@@ -13,6 +13,9 @@ namespace Worker
 {
     public class MqttCustomerClient
     {
+        private const string CONNECTED_MSG = "Connected";
+        private const string DISCONNECTED_MSG = "Disconnected";
+
         private IMqttClient _mqttClient;
         private ILogger _logger;
 
@@ -43,7 +46,7 @@ namespace Worker
 
             await _mqttClient.ConnectAsync(clientOptionsBuilder.Build());
         }
-        public  async void Subscribe(string topic)
+        public async void Subscribe(string topic)
         {
             if (_mqttClient == null || !_mqttClient.IsConnected)
             {
@@ -59,24 +62,27 @@ namespace Worker
                 {
                     await _mqttClient.SubscribeAsync(builder);
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    
+                    throw new TimeoutException();
                 }
             }
         }
         private void MqttClient_Connected(MqttClientConnectedEventArgs e)
         {
-            _logger.LogInformation("Connected");
+            _logger.LogInformation(CONNECTED_MSG);
         }
 
         private void MqttClient_Disconnected(MqttClientDisconnectedEventArgs e)
         {
-            _logger.LogInformation("Disconnected");
+            _logger.LogInformation(DISCONNECTED_MSG);
         }
+        
         private void MqttClient_ApplicationMessageReceived(MqttApplicationMessageReceivedEventArgs e)
         {
-            _logger.LogInformation(ASCIIEncoding.ASCII.GetString(e.ApplicationMessage.Payload));
+            string message = $"A mensagem: {Encoding.ASCII.GetString(e.ApplicationMessage.Payload)} foi recebida pelo tópico {e.ApplicationMessage.Topic}";
+
+            _logger.LogInformation(message);
         }
     }
 }
