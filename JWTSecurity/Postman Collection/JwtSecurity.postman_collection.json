@@ -1,0 +1,157 @@
+{
+	"info": {
+		"_postman_id": "8a2bf961-b8e9-4fcf-af55-f2629964a5b6",
+		"name": "JwtSecurity",
+		"description": "Collection with requests to tests authentication and authorization using JWT",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "loginEmployee",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n \"name\":\"robbin\",\n \"password\": \"12345\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44314/api/home/login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44314",
+					"path": [
+						"api",
+						"home",
+						"login"
+					]
+				},
+				"description": "use to reach login endpoint. It sends a required login information"
+			},
+			"response": []
+		},
+		{
+			"name": "loginManager",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n \"name\":\"batman\",\n \"password\": \"12345\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:44314/api/home/login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44314",
+					"path": [
+						"api",
+						"home",
+						"login"
+					]
+				},
+				"description": "use to reach login endpoint. It sends a required login information"
+			},
+			"response": []
+		},
+		{
+			"name": "authenticated",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IlJvYmJpbiIsInJvbGUiOiJlbXBsb3llZSIsIm5iZiI6MTU5NTgwMjY1NiwiZXhwIjoxNTk1ODA5ODU1LCJpYXQiOjE1OTU4MDI2NTZ9.0zE_pKToREGhccmZGsktmNIOtwgdGBzUx2al_OCnNn4",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44314/api/home/authenticated",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44314",
+					"path": [
+						"api",
+						"home",
+						"authenticated"
+					]
+				},
+				"description": "Send a request using bearer authorization scheme to reach an authenticated endpoint"
+			},
+			"response": []
+		},
+		{
+			"name": "employee",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IlJvYmJpbiIsInJvbGUiOiJlbXBsb3llZSIsIm5iZiI6MTU5NTgwMjY1NiwiZXhwIjoxNTk1ODA5ODU1LCJpYXQiOjE1OTU4MDI2NTZ9.0zE_pKToREGhccmZGsktmNIOtwgdGBzUx2al_OCnNn4",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44314/api/home/employee",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44314",
+					"path": [
+						"api",
+						"home",
+						"employee"
+					]
+				},
+				"description": "send a request to an authenticated endpoint that allows users with role employee or manager"
+			},
+			"response": []
+		},
+		{
+			"name": "manager",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImJhdG1hbiIsInJvbGUiOiJtYW5hZ2VyIiwibmJmIjoxNTk1ODAzMzEzLCJleHAiOjE1OTU4MTA1MTMsImlhdCI6MTU5NTgwMzMxM30.LBohCBCIUZ9q-cpTNdUjMdl96xg3HtDUlpFcBrWc4ow",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:44314/api/home/manager",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "44314",
+					"path": [
+						"api",
+						"home",
+						"manager"
+					]
+				},
+				"description": "send a request to an authenticated endpoint that allows users with role employee or manager"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
